@@ -6,7 +6,7 @@ So, There is a decimal number :
 
                 16791573288892525934609440079317541905554393653557736896280802239551592289061061348368963
                 
-whose binary representation contains fixed quantity of binary number groups and the fixed quantity is also **minima of this equation** : 
+whose binary representation contains fixed quantity of binary number groups ( divided into fixed number of binary number groups ) and the fixed quantity is also **minima of this equation** : 
 
                                                  y = x^7 - 117649x
 
