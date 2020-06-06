@@ -8,7 +8,7 @@ So, There is a decimal number :
                 
 whose binary representation contains fixed quantity of binary number groups ( divided into fixed number of binary number groups ) and the fixed quantity is also **minima of this equation** : 
 
-                                                 y = x^7 - 117649x
+                                                 y = (x^7)/7 - 117649x
 
 Now , the given clue to solve this problem is that , the binary group also can be converted to a certain famous melody. 
 
