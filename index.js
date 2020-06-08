@@ -40,6 +40,6 @@ pipe([
   transform(map(pipe([
     x => parseInt(x, 2),
     String.fromCharCode,
-  ])), []),
+  ])), ''),
   trace,
 ])(number)
