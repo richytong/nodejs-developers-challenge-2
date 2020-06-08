@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.15/howler.core.min.js"></script>
+<script src="https://unpkg.com/rubico/index.js"></script>
+</head>
+<body>
+<script>
+
+const { pipe, fork, tap, map, get } = rubico
+
+const trace = tap(console.log)
+
+const identity = x => x
+
+const toMusiccaMp3 = n => `assets/${n}.mp3`
+
+// const toMusiccaOgg = n => `https://www.musicca.com/lydfiler/piano/${n}.ogg`
+
+const noteToHowlMap = pipe([
+  map(fork([get(0), pipe([
+    get(1),
+    fork({
+      src: fork([
+        toMusiccaMp3,
+        // toMusiccaOgg
+      ]),
+    }),
+    x => new Howl(x),
+  ])])),
+  x => new Map(x),
+])([
+  ['Ab4', 36], // 1gis
+  ['A4', 37], // 2a
+  ['Bb4', 38], // 2ais
+  ['B4', 39], // 2b
+  ['C4', 40], // 2c
+  ['Cb4', 41], // 2cis
+  ['D4', 42], // 2d
+  ['Eb4', 43], // 2dis
+  ['E4', 44], // 2e
+  ['F4', 45], // 2f
+  ['Gb4', 46], // 2fis
+  ['G4', 47], // 2g
+  ['Ab4', 48], // 2gis
+  ['A5', 49], // 3a
+  ['Bb5', 50], // 3ais
+  ['C5', 51], // 3ais
+])
+
+const getHowl = note => noteToHowlMap.get(note)
+
+const notes = [
+  'C4', 'C4', 'G4', 'G4', 'A5', 'A5',
+  'G4', 'F4', 'F4', 'E4', 'E4', 'D4',
+  'D4', 'C4', 'G4', 'G4', 'F4', 'F4',
+  'E4', 'E4', 'D4', 'G4', 'G4', 'F4',
+  'F4', 'E4', 'E4', 'D4', 'C4', 'C4',
+  'G4', 'G4', 'A5', 'A5', 'G4', 'F4',
+  'F4', 'E4', 'E4', 'D4', 'D4', 'C4'
+]
+
+const sleep = ms => () => new Promise(resolve => setTimeout(resolve, ms))
+
+pipe([
+  map(getHowl),
+  map.series(pipe([
+    sound => sound.play(),
+    sleep(500),
+  ])),
+  trace,
+])(notes)
+
+</script>
+</body>
+</html>

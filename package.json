@@ -13,6 +13,8 @@
   "author": "darkie8",
   "license": "MIT",
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "midi-note": "^1.0.0",
+    "prompt-sync": "^4.2.0",
+    "tone": "^13.8.25"
   }
 }
