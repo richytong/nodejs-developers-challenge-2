@@ -38,7 +38,6 @@ pipe([
     getMinimumPoint(equation, range(-10, 10))
   ),
   transform(map(pipe([
-    identity,
     x => parseInt(x, 2),
     String.fromCharCode,
   ])), []),
